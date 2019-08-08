@@ -18,7 +18,7 @@ signature_score <- rbind(signature_score,CD103_ratio)
 rownames(signature_score)[nrow(signature_score)] <- "CD103_Ratio_Cancer.Cell.2014_PMID.25446897"
 
 # differentiation score
-diff_centroid <- read.table("0.differentiationCentroids_LimDWD.txt",sep = '\t',header = T,row.names = 1,check.names = F)
+diff_centroid <- read.table("~/data/special_gene_signature_training_sets/UNC_Differentiation.Score_Model_BCR.2010_PMID.20813035",sep = '\t',header = T,row.names = 1,check.names = F)
 diff_score <- assignDiffScore.dwd(diff_centroid,edata)
 signature_score <- rbind(signature_score,diff_score)
 rownames(signature_score)[nrow(signature_score)] <- "UNC_Differentiation.Score_Model_BCR.2010_PMID.20813035"
@@ -29,6 +29,12 @@ signature_score <- rbind(signature_score,diff_score)
 rownames(signature_score)[nrow(signature_score)] <- "GHI_RS_Model_NJEM.2004_PMID.15591335"
 
 save(signature_score,file = 'signature_score.rda')
+
+# For special signatures calculated as correlation to predetermined gene centroids
+# All traing sets files are included in the ~/data/special_gene_signature_training_sets folder
+# For calculation of such special signature, DWD was used to merge current edata with 
+# training set, then DWD prediction tool was used to compute pearson/spearman correlation/euclidean distance
+# for each sample
 
 # Given a gene-level CNA score matrix (gene X sample): CNdata
 segment_score <- calc_segments(CNdata,'CNA_segments.gmt',method = 'mean')
