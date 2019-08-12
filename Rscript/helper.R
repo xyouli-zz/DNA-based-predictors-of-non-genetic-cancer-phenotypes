@@ -220,7 +220,7 @@ standardize<-function(x){
 }
 
 exp_wrap <- function(edata) {
-  keep <- c('29126','1493','5133')
+  keep <- c('29126','1493','5133') # for PD1, PDL1 and CTLA4
   edata70 <- edata[rowSums(edata<=2)<(0.3*ncol(edata)),]
   for(i in 1:3) {
     if(!(keep[i] %in% rownames(edata70))) {

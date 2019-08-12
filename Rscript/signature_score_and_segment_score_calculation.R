@@ -1,6 +1,7 @@
-# This script is for calculating gene signature scores based on RNA and segment scores based on DNA CNA
+# This script is for calculating gene signature scores based on RNA and segment scores based on gene-level DNA CNA
 
 # Given a gene expression data matrix (gene X sample): edata
+# rows are genes in Entrez ID and columns are samples
 # run calc_signatures
 signature_score <- calc_signatures(edata,"~/data/gene_signatures_20170111.gmt",method = "median")
 
@@ -37,6 +38,7 @@ save(signature_score,file = 'signature_score.rda')
 # for each sample
 
 # Given a gene-level CNA score matrix (gene X sample): CNdata
+# rows are genes in Entrez ID and columns are samples
 segment_score <- calc_segments(CNdata,'CNA_segments.gmt',method = 'mean')
 
 
